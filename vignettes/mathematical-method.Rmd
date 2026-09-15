@@ -1,0 +1,28 @@
+---
+title: "Mathematical method and numerical contract"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Mathematical method and numerical contract}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+`grsem` minimizes
+
+\[
+F_{SEM}(\theta)+\lambda\{(1-\alpha)\sum_g w_g\|\theta_g\|_2+
+\alpha\sum_jv_j|\theta_j|\}.
+\]
+
+The plus sign is essential for a minimization problem. Coordinates with zero
+penalty factor are updated by the smooth SEM gradient but bypass the proximal
+shrinkage. Non-overlapping sparse-group updates first apply coordinate soft
+thresholding and then group soft thresholding. Backtracking verifies the
+standard smooth-part majorization inequality. The reported diagnostic is the
+maximum proximal-gradient mapping, not merely an optimizer status flag.
+
+The SEM likelihood is non-convex. The solver therefore targets a local
+stationary point and uses warm starts plus deterministic alternative starts;
+it does not claim global optimality. Version 0.1 supports continuous data,
+one group, complete observations and ML. Penalized estimates, post-selection
+refits, and held-out evaluation are separate objects and inferential stages.

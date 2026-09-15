@@ -1,0 +1,20 @@
+---
+title: "Synthetic Core workflow and structural graph diagnosis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Synthetic Core workflow}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This example uses only freshly simulated observations. The model structure is
+specified by the user; graph validation is not causal discovery. Its fixed rho
+is a demonstration choice, not a tuned optimum.
+
+```{r}
+source(system.file("examples", "quick_start.R", package = "grsem"))
+```
+
+Only structural regressions enter the directed graph. Measurement loadings and
+covariances do not. The refit is ML-only; ordinary p-values do not account for
+the selection procedure.

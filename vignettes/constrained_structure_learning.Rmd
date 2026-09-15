@@ -1,0 +1,18 @@
+---
+title: "Experimental candidate-role diagnostics"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Experimental candidate-role diagnostics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+**Experimental.** The optional PC/FCI/GES wrappers operate on module averages
+from caller-supplied selected items. They return candidate skeletons, direction
+labels and bootstrap summaries; they are not the Core DAG validity check.
+
+Forbidden adjacencies constrain skeletons. Theory tiers provide post-hoc
+direction annotations, not general search-direction constraints. Matrix
+orientation interpretation remains experimental. NOTEARS is Not Implemented.
+No structural-learning experiment is executed in this vignette; the Core
+synthetic workflow does not depend on these backends.

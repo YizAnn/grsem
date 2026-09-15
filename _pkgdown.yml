@@ -1,0 +1,34 @@
+template:
+  bootstrap: 5
+reference:
+  - title: Core specification and estimation
+    contents:
+      - grsem_model
+      - fit_penalized
+      - grsem
+      - grsem_control
+      - grsem_group_weights
+      - bootstrap_penalized
+  - title: Core selection, graph diagnosis and evaluation
+    contents:
+      - selected_groups
+      - selected_edges
+      - validate_dag
+      - post_selection_refit
+      - cv_grsem
+      - compare_models
+  - title: Proximal operators
+    contents:
+      - soft_threshold
+      - group_soft_threshold
+      - sparse_group_prox
+  - title: Experimental
+    contents:
+      - learn_candidate_roles
+      - grsem_prior
+      - fit_bayes
+      - grsem_bayes
+      - posterior_predict
+  - title: Not Implemented
+    contents:
+      - prior_predict

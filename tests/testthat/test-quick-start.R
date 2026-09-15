@@ -1,0 +1,10 @@
+test_that("synthetic structural workflow completes with the real backend", {
+  path <- system.file("examples", "quick_start.R", package = "grsem")
+  if (!nzchar(path)) path <- test_path("..", "..", "inst", "examples", "quick_start.R")
+  env <- new.env(parent = globalenv())
+  invisible(capture.output(sys.source(path, envir = env)))
+  expect_s3_class(env$fit, "grsem_fit")
+  expect_true(env$dag$is_dag)
+  expect_true(all(env$edges$op == "~"))
+  expect_true(lavaan::lavInspect(env$refit, "converged"))
+})

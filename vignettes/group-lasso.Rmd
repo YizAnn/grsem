@@ -1,0 +1,15 @@
+---
+title: "Group lasso parameter selection"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Group lasso parameter selection}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Set alpha=0 for group shrinkage. Default weights are the square root of the
+number of penalized full parameter-table entries per group; equality mappings
+can reduce the independent optimization dimension. selected_groups() marks a
+group selected when any relevant coordinate exceeds the zero threshold.
+Group sparsity is not a significance test. The Core synthetic workflow is in
+basic-cfa.Rmd.

@@ -1,0 +1,16 @@
+---
+title: "Model comparison boundaries"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Model comparison boundaries}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+compare_models() accepts already fitted models; it does not automatically
+construct or choose reflective, antecedent, or alternative-factor models.
+Comparisons on different observed variable sets must not mechanically rank
+ordinary AIC/BIC. Common-variable covariance error requires exactly the stated
+variables in each model and held-out data. Failed models remain explicit rows.
+
+This is a method note; it contains no survey observations or empirical results.

@@ -1,0 +1,17 @@
+---
+title: "Experimental Bayesian SEM boundaries"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Experimental Bayesian SEM boundaries}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+**Experimental.** fit_bayes() delegates sampling to CmdStan and requires
+explicit Stan data; general lavaan-to-Stan conversion is not implemented.
+Prior configuration is not fully wired or validated against Stan data, and
+current status checks do not enforce a full sampling-diagnostics policy.
+
+R-hat, ESS, divergence, treedepth, energy and predictive checks would be needed
+before interpreting a future Bayesian run. No sampling is executed here and
+no Bayesian result is claimed. prior_predict is Not Implemented.

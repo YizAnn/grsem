@@ -1,0 +1,34 @@
+Package: grsem
+Type: Package
+Title: Grouped Regularized Structural Equation Modeling Prototype
+Version: 0.2.0.9000
+Authors@R: person("Zhuoer", "Zhang", role = c("aut", "cre"), email = "zhangze2048@ruc.edu.cn")
+Author: Zhuoer Zhang
+Maintainer: Zhuoer Zhang <zhangze2048@ruc.edu.cn>
+Description: Research prototype for grouped regularized structural equation
+    modeling, candidate structural-role diagnostics, and experimental Bayesian
+    backends. Relative regularization paths, proximal gradient and accelerated
+    solvers, post-selection refitting, sample splitting, and structure-role
+    diagnostics are kept distinct. Continuous maximum likelihood is the
+    Core backend; ordered DWLS and Stan interfaces are experimental.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.3.0)
+Imports:
+    lavaan (>= 0.7-2),
+    stats,
+    utils,
+    graphics,
+    methods
+Suggests:
+    testthat (>= 3.0.0),
+    numDeriv,
+    knitr,
+    rmarkdown,
+    OpenMx,
+    pcalg,
+    cmdstanr,
+    posterior
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+RoxygenNote: 7.3.2

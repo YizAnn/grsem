@@ -1,0 +1,16 @@
+---
+title: "Grouped measurement and relative paths"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Grouped measurement and relative paths}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+rho=lambda/lambda_max controls a relative regularization path. Each training
+or bootstrap sample recomputes lambda_max for each alpha. Grouped loadings are
+measurement parameters; they do not become directed structural edges through
+selected_edges().
+
+This is a method note, not a second executed data example. The runnable
+synthetic example is basic-cfa.Rmd and the packaged examples/quick_start.R.

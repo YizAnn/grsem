@@ -1,0 +1,13 @@
+---
+title: "Sparse-group parameter selection"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Sparse-group parameter selection}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Values 0<alpha<1 combine group-level L2 with coordinate-level L1 shrinkage.
+alpha=1 removes the group term. Overlapping groups are rejected.
+Penalties apply to eligible SEM parameter coordinates, not graph nodes.
+The Core synthetic workflow is in basic-cfa.Rmd.
