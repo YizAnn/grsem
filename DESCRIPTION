@@ -29,6 +29,11 @@ Suggests:
     pcalg,
     cmdstanr,
     posterior
+Config/Needs/core:
+    testthat (>= 3.0.0),
+    numDeriv,
+    knitr,
+    rmarkdown
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 RoxygenNote: 7.3.2

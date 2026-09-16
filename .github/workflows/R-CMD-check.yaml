@@ -4,15 +4,54 @@ on:
 
 name: R-CMD-check
 
+permissions:
+  contents: read
+
 jobs:
-  R-CMD-check:
-    runs-on: ubuntu-latest
+  Core:
+    name: Core (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    env:
+      # Optional experimental Suggests may be absent; Core requirements are
+      # installed explicitly and checked below before R CMD check.
+      _R_CHECK_FORCE_SUGGESTS_: "false"
+      GRSEM_PROJECT_ROOT: ${{ github.workspace }}
     steps:
       - uses: actions/checkout@v4
       - uses: r-lib/actions/setup-r@v2
         with:
+          r-version: release
           use-public-rspm: true
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          dependencies: 'c("Depends", "Imports", "LinkingTo")'
+          needs: core
           extra-packages: any::rcmdcheck
-      - uses: r-lib/actions/check-r-package@v2
+          install-pandoc: true
+      - name: Verify Core check dependencies
+        shell: Rscript {0}
+        run: |
+          desc <- read.dcf("DESCRIPTION")[1, ]
+          packages <- function(field) {
+            trimws(sub("\\s*\\(.*", "", strsplit(desc[[field]], ",")[[1]]))
+          }
+          experimental <- c("OpenMx", "pcalg", "cmdstanr", "posterior")
+          core <- packages("Config/Needs/core")
+          stopifnot(setequal(core, setdiff(packages("Suggests"), experimental)))
+          required <- unique(c(packages("Imports"), core, "rcmdcheck"))
+          missing <- required[!vapply(required, requireNamespace, logical(1), quietly = TRUE)]
+          if (length(missing)) stop("Missing Core dependencies: ", paste(missing, collapse = ", "))
+          stopifnot(rmarkdown::pandoc_available())
+          print(vapply(required, function(pkg) as.character(packageVersion(pkg)), character(1)))
+      - name: Core R CMD check (tests, examples, vignettes)
+        uses: r-lib/actions/check-r-package@v2
+        with:
+          args: 'c("--no-manual", "--as-cran")'
+          build_args: '"--no-manual"'
+          error-on: '"warning"'
+          upload-results: true
+          artifact-name: core-${{ matrix.os }}-check-results
