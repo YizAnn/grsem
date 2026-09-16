@@ -30,6 +30,24 @@
 #' @param control Result of [grsem_control()].
 #' @param ... Additional arguments passed to [lavaan::sem()].
 #' @return Object of class `grsem_fit`.
+#' @examples
+#' # An overidentified CFA with four informative indicators and independent errors.
+#' set.seed(1)
+#' n <- 400
+#' f <- rnorm(n)
+#' d <- data.frame(
+#'   x1 = 0.8 * f + rnorm(n, sd = 0.8),
+#'   x2 = 0.9 * f + rnorm(n, sd = 0.8),
+#'   x3 = 0.7 * f + rnorm(n, sd = 0.8),
+#'   x4 = 0.85 * f + rnorm(n, sd = 0.8)
+#' )
+#' g <- c("f =~ x2"="candidate", "f =~ x3"="candidate",
+#'        "f =~ x4"="candidate")
+#' fit <- grsem("f =~ x1 + x2 + x3 + x4", d, groups=g,
+#'              rho=c(0.2, 0), alpha=0,
+#'              control=grsem_control(max_iter=100, tolerance=1e-3,
+#'                                    n_starts=1))
+#' fit
 #' @export
 grsem <- function(model, data, groups = NULL, penalize = c("loadings"),
                   lambda = NULL, rho = NULL, alpha = c(0, 0.25, 0.5),

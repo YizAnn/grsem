@@ -32,11 +32,19 @@ grsem(model, data, groups = NULL, penalize = c("loadings"),
 \value{A \code{grsem_fit} research-prototype object.}
 \description{Fits non-overlapping Group Lasso and Sparse Group Lasso paths on a lavaan-exported continuous-variable, complete-data ML objective. All free SEM parameters are jointly estimated; only the selected coordinates receive proximal shrinkage.}
 \examples{
+# An overidentified CFA with four informative indicators and independent errors.
 set.seed(1)
-f <- rnorm(100)
-d <- data.frame(x1=f+rnorm(100), x2=f+rnorm(100), x3=rnorm(100))
-g <- c("f =~ x2"="candidate", "f =~ x3"="candidate")
-fit <- grsem("f =~ x1 + x2 + x3", d, groups=g,
+n <- 400
+f <- rnorm(n)
+d <- data.frame(
+  x1 = 0.8 * f + rnorm(n, sd = 0.8),
+  x2 = 0.9 * f + rnorm(n, sd = 0.8),
+  x3 = 0.7 * f + rnorm(n, sd = 0.8),
+  x4 = 0.85 * f + rnorm(n, sd = 0.8)
+)
+g <- c("f =~ x2"="candidate", "f =~ x3"="candidate",
+       "f =~ x4"="candidate")
+fit <- grsem("f =~ x1 + x2 + x3 + x4", d, groups=g,
              rho=c(0.2, 0), alpha=0,
              control=grsem_control(max_iter=100, tolerance=1e-3,
                                    n_starts=1))
